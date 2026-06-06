@@ -167,8 +167,8 @@ class World:
         _show_block() and _hide_block() so this method should be called if
         add_block() or remove_block() was called with immediate=False
         """
-        start = time.clock()
-        while self.show_hide_queue and time.clock() - start < 1.0 / ticks_per_sec:
+        start = time.perf_counter()
+        while self.show_hide_queue and time.perf_counter() - start < 1.0 / ticks_per_sec:
             self._dequeue()
 
     def process_entire_queue(self):
