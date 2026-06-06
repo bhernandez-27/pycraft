@@ -112,7 +112,7 @@ class Window(pyglet.window.Window):
             Pass the current window size
         """
         self.clear()
-        self.gamestatemanager.peek().on_draw(self.get_size())
+        self.gamestatemanager.peek().on_draw(self.get_framebuffer_size())
 
     def update(self, dt):
         """This method is scheduled to be called repeatedly by the pyglet

@@ -111,7 +111,7 @@ class GameStateRunning(GameState):
         self.world.stop_shader()
         self.draw_focused_block()
         self.set_2d(size)
-        self.draw_labels()
+        self.draw_labels(size)
         self.draw_reticle()
 
     def set_3d(self, size):
@@ -167,8 +167,13 @@ class GameStateRunning(GameState):
             pyglet.graphics.draw(24, GL.GL_QUADS, ('v3f/static', vertex_data))
             GL.glPolygonMode(GL.GL_FRONT_AND_BACK, GL.GL_FILL)
 
-    def draw_labels(self):
+    def draw_labels(self, size):
         """Draw the label in the top left of the screen."""
+        width, height = size
+        self.game_info_label.x = 10
+        self.game_info_label.y = height - 10
+        self.current_item_label.x = width - 10
+        self.current_item_label.y = 10
         x, y, z = self.player.position
         self.game_info_label.text = '%02d (%.2f, %.2f, %.2f) %d / %d' % (
             pyglet.clock.get_fps(), x, y, z,

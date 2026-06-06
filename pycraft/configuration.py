@@ -21,7 +21,7 @@ from pyglet.window import key
 
 def update_dict(d, u):
     for key_, value in u.items():
-        if isinstance(value, collections.Mapping):
+        if isinstance(value, collections.abc.Mapping):
             r = update_dict(d.get(key_, {}), value)
             d[key_] = r
         else:
